@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+		xmlns:context="http://www.springframework.org/schema/context"
+		xmlns:jdbc="http://www.springframework.org/schema/jdbc"
+		xmlns:configurator="http://cocoon.apache.org/schema/configurator"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:schemaLocation="
+http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc.xsd
+http://cocoon.apache.org/schema/configurator http://cocoon.apache.org/schema/configurator/cocoon-configurator-1.0.1.xsd
+">
+
+	<!-- Activate Cocoon Spring Configurator -->
+	<configurator:settings/>
+
+	<!-- Configure Log4j -->
+	<bean name="org.apache.cocoon.spring.configurator.log4j" class="org.apache.cocoon.spring.configurator.log4j.Log4JConfigurator"
+		scope="singleton">
+		<property name="settings" ref="org.apache.cocoon.configuration.Settings"/>
+		<property name="resource" value="/WEB-INF/log4j.xml"/>
+	</bean>
+
+	<context:annotation-config/>
+
+	<jdbc:embedded-database id="dataSource"/>
+
+	<bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+		<property name="dataSource" ref="dataSource"/>
+		<property name="jpaVendorAdapter">
+			<bean class="org.springframework.orm.jpa.vendor.EclipseLinkJpaVendorAdapter">
+				<property name="showSql" value="true"/>
+			</bean>
+		</property>
+		<property name="jpaProperties">
+			<props>
+				<prop key="javax.persistence.transactionType">RESOURCE_LOCAL</prop>
+				<prop key="eclipselink.ddl-generation">create-tables</prop>
+				<prop key="eclipselink.ddl-generation.output-mode">database</prop>
+			</props>
+		</property>
+	</bean>
+
+	<bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
+		<property name="entityManagerFactory" ref="entityManagerFactory"/>
+	</bean>
+</beans>

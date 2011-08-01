@@ -1,0 +1,28 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+		xmlns:context="http://www.springframework.org/schema/context"
+		xmlns:tx="http://www.springframework.org/schema/tx"
+		xmlns:mvc="http://www.springframework.org/schema/mvc"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:schemaLocation="
+http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
+http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
+">
+
+	<!-- Configure @Transactional annotation to work on implementation classes (will not work on interfaces) -->
+	<!-- Needed for enabling @Transactional on Spring MVC Controllers -->
+	<tx:annotation-driven proxy-target-class="true"/>
+
+	<context:component-scan base-package="org.alveolo.cocoon.springification.controller"/>
+	<context:annotation-config/>
+	<mvc:annotation-driven/>
+	<mvc:view-controller path="/" view-name="home"/>
+
+	<bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix">
+			<value>/WEB-INF/</value>
+		</property>
+	</bean>
+
+</beans>

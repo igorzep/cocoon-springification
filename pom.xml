@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+	<modelVersion>4.0.0</modelVersion>
+	<packaging>pom</packaging>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<cocoon.version>3.0.0-beta-1-SNAPSHOT</cocoon.version>
+		<spring.version>[3.0.5, 3.1)</spring.version>
+	</properties>
+
+	<groupId>org.alveolo.cocoon</groupId>
+	<artifactId>cocoon-springification</artifactId>
+	<version>0.1-SNAPSHOT</version>
+
+	<name>Springification of Cocoon 3 framework</name>
+
+	<modules>
+		<module>data</module>
+		<module>main</module>
+		<module>webapp</module>
+	</modules>
+
+	<repositories>
+		<repository>
+			<id>apache-snapshots</id>
+			<url>https://repository.apache.org/content/groups/snapshots/</url>
+		</repository>
+		<repository>
+			<id>maven2-repository.dev.java.net</id>
+			<name>Java.net Repository for Maven</name>
+			<url>http://download.java.net/maven/2/</url>
+		</repository>
+		<repository>
+			<id>eclipselink</id>
+			<url>http://www.eclipse.org/downloads/download.php?r=1&amp;nf=1&amp;file=/rt/eclipselink/maven.repo/</url>
+		</repository>
+	</repositories>
+
+	<build>
+		<plugins>
+			<plugin>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>2.3.2</version>
+				<configuration>
+					<source>1.6</source>
+					<target>1.6</target>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+
+</project>

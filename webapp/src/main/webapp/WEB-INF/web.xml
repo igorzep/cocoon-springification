@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<web-app version="2.5" xmlns="http://java.sun.com/xml/ns/j2ee"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:schemaLocation="
+http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_5.xsd
+">
+
+	<listener>
+		<description>Declare a context listener that installs all blocks.</description>
+		<listener-class>org.apache.cocoon.blockdeployment.BlockDeploymentServletContextListener</listener-class>
+	</listener>
+
+	<listener>
+		<description>Set up the context containing all Cocoon components (and user defined beans as well).</description>
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+	</listener>
+
+	<listener>
+		<description>Set up the required RequestAttributes to support Springs and Cocoon custom bean scopes
+			like the request scope or the session scope.</description>
+		<listener-class>org.springframework.web.context.request.RequestContextListener</listener-class>
+	</listener>
+
+	<servlet>
+		<description>Cocoon blocks dispatcher</description>
+		<servlet-name>cocoon</servlet-name>
+		<servlet-class>org.apache.cocoon.servletservice.DispatcherServlet</servlet-class>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>cocoon</servlet-name>
+		<url-pattern>/WEB-INF/*</url-pattern>
+	</servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>default</servlet-name>
+		<url-pattern>/favicon.ico</url-pattern>
+		<url-pattern>/static/*</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>spring</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>spring</servlet-name>
+		<url-pattern>/*</url-pattern>
+	</servlet-mapping>
+
+</web-app>

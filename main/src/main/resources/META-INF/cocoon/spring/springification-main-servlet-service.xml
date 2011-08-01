@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+		xmlns:servlet="http://cocoon.apache.org/schema/servlet"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:schemaLocation="
+http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+http://cocoon.apache.org/schema/servlet http://cocoon.apache.org/schema/servlet/cocoon-servlet-1.0.xsd
+">
+
+	<!-- A Cocoon-Sitemap based servlet-service. -->
+	<bean id="org.alveolo.cocoon.springification.service" class="org.apache.cocoon.servlet.XMLSitemapServlet">
+		<servlet:context mount-path="/" context-path="blockcontext:/cocoon-springification-main/"/>
+	</bean>
+
+</beans>
