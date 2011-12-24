@@ -9,7 +9,8 @@
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<cocoon.version>3.0.0-beta-1-SNAPSHOT</cocoon.version>
-		<spring.version>[3.0.5, 3.1)</spring.version>
+		<!--spring.version>3.0.7.RELEASE</spring.version-->
+		<spring.version>3.1.0.RELEASE</spring.version>
 	</properties>
 
 	<groupId>org.alveolo.cocoon</groupId>
